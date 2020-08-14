@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <Home/>
+    <!-- <Home/> -->
+    <pagination/>
   </div>
 </template>
 
 <script>
 import Home from './components/Home.vue'
+import pagination from './components/pagination'
 
 export default {
   name: 'app',
   components: {
-    Home
+    Home,
+    pagination
+
   } 
 }
 </script>
