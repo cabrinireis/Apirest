@@ -3,11 +3,12 @@
 
     <nav>
       <div class="nav-wrapper blue darken-1">
-        <a class="brand-logo center">Produtos Front</a>
+        <a class="brand-logo center">Produtos</a>
       </div>
     </nav>
 
     <div class="container">
+      
 
       <form @submit="salvar" >
 
@@ -35,9 +36,7 @@
         </thead>
 
         <tbody v-for="produto of produtos" :key="produto.id">
-
           <tr>
-
             <td>{{produto.nome}}</td>
             <td>{{produto.quantidade}}</td>
             <td>{{produto.valor}}</td>
@@ -45,18 +44,14 @@
             <button class="waves-effect btn-small blue darken-1" @click="editar(produto)"><i class="material-icons">create</i></button>
             <button class="waves-effect btn-small red darken-1" @click="remover(produto)" ><i class="material-icons">delete_sweep</i></button>
             </td>
-
           </tr>
-
         </tbody>
-      
       </table>
-
+      
     </div>
 
   </div>
 </template>
-
 <script>
 import Produto from './services/produtos'
 
@@ -85,6 +80,7 @@ export default {
     listar(){
       Produto.listar().then(resposta =>{
       this.produtos = resposta.data
+      console.log(this.produtos)
     })
     },
     salvar(){
@@ -111,13 +107,13 @@ export default {
       console.log(this.produtos)
     },
     remover(produto){
-      Produto.deletar(produto).then(resposta =>{
+      Produto.deletar(this.produto).then(resposta =>{
         this.listar()
       })
     },
     atualiza(){
-      Produto.atulizar(produto).then(resposta =>{
-        this.produto
+      Produto.atulizar(this.produto).then(resposta =>{
+        this.listar()
       })
     }
   }
